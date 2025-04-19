@@ -1,0 +1,35 @@
+.navbar {
+  background-color: var(--bgc) !important;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  font-size: 3rem;
+  cursor: pointer;
+  font-family: var(--Heading1);
+}
+.navbar-brand:hover {
+  color: var(--white) !important;
+}
+
+.nav-link {
+  font-weight: 500;
+  margin: 0 1.2rem;
+  font-size: 1.2rem;
+}
+
+.navbar-brand,
+.nav-link {
+  color: var(--pink) !important;
+}
+
+.nav-link:hover {
+  background-color: var(--blue);
+  border-radius: 7px;
+  color: var(--bgc) !important;
+  cursor: pointer;
+}
+
+
