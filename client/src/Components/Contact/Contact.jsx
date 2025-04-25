@@ -1,50 +1,30 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useRef, useState } from 'react';
+import emailjs from "@emailjs/browser";
 import './Contact.css';
 import resume from '../../assets/KellySunResume.pdf';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    from: '',
-    subject: '',
-    message: ''
-  });
-  const [status, setStatus] = useState({
-    submitting: false,
-    success: false,
-    error: false,
-    message: ''
-  });
+  const form = useRef();
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setStatus({ submitting: true, success: false, error: false, message: '' });
-
-    try {
-      const response = await axios.post('/api/contact', formData);
-      setStatus({
-        submitting: false,
-        success: true,
-        error: false,
-        message: 'Email sent successfully! I will get back to you soon.'
-      });
-      setFormData({ from: '', subject: '', message: '' });
-    } catch (error) {
-      setStatus({
-        submitting: false,
-        success: false,
-        error: true,
-        message: 'Failed to send email. Please try again later.'
-      });
-    }
-  };
+    emailjs
+      .sendForm(
+        "service_o86bko7",
+        "template_ly5w6ri",
+        form.current,
+        "HVi0luBegJidX7dMu"
+      )
+      .then(
+        (result) => {
+          alert("Message sent successfully!");
+          form.current.reset();
+        },
+        (error) => {
+          alert("Failed to send message: " + error.text);
+        }
+      );
+};
 
   return (
     <div id="contact" className="contact-container">
@@ -54,15 +34,23 @@ const Contact = () => {
           Download Resume
         </a>
       </div>
-      <form onSubmit={handleSubmit} className="contact-form">
+      <form ref={form} onSubmit={handleSubmit} className="contact-form">
         <div className="form-group">
-          <label htmlFor="from">Your Email</label>
+          <label htmlFor="from_name">Your Name</label>
+          <input
+            type="text"
+            id="from_name"
+            name="from_name"
+            required
+            disabled={status.submitting}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="from_email">Your Email</label>
           <input
             type="email"
-            id="from"
-            name="from"
-            value={formData.from}
-            onChange={handleChange}
+            id="from_email"
+            name="from_email"
             required
             disabled={status.submitting}
           />
@@ -73,8 +61,6 @@ const Contact = () => {
             type="text"
             id="subject"
             name="subject"
-            value={formData.subject}
-            onChange={handleChange}
             required
             disabled={status.submitting}
           />
@@ -84,23 +70,22 @@ const Contact = () => {
           <textarea
             id="message"
             name="message"
-            value={formData.message}
-            onChange={handleChange}
+            rows="5"
             required
             disabled={status.submitting}
-          />
+          ></textarea>
         </div>
         {status.message && (
-          <div className={`status-message ${status.success ? 'success' : 'error'}`}>
+          <div className={`status-message ${status.success ? "success" : "error"}`}>
             {status.message}
           </div>
         )}
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           className="submit-btn"
           disabled={status.submitting}
         >
-          {status.submitting ? 'Sending...' : 'Send'}
+          {status.submitting ? "Sending..." : "Send"}
         </button>
       </form>
     </div>
