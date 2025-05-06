@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../api';
-import projectImages from '../../data/projectImages';
 import './Projects.css';
 
 const Projects = () => {
@@ -12,15 +11,7 @@ const Projects = () => {
     const fetchProjects = async () => {
       try {
         const response = await api.projects.getAll();
-        
-        const projectsWithLocalImages = response.data.map(project => {
-          return {
-            ...project,
-            image: projectImages[project._id]
-          };
-        });
-        
-        setProjects(projectsWithLocalImages);
+        setProjects(response.data);
         setLoading(false);
       } catch (err) {
         setError('Unable to load project data');
@@ -39,9 +30,9 @@ const Projects = () => {
       <h2 id="projects">My Projects</h2>
       <div className="projects-grid">
         {projects.map((project) => (
-          <div key={project.name} className="project-card">
+          <div key={project._id} className="project-card">
             <div className="project-image">
-              <img src={project.image} alt={project.name} />
+              <img src={project.imageUrl} alt={project.name} />
             </div>
             <div className="project-content">
               <h3>{project.name}</h3>
