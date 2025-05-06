@@ -1,0 +1,150 @@
+.project-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: var(--white);
+}
+
+/* Navigation styles */
+.project-nav {
+  margin-bottom: 2rem;
+}
+
+/* Links section */
+
+
+
+
+/* Project Gallery section */
+.project-gallery {
+  margin-bottom: 3rem;
+}
+
+.project-gallery h2 {
+  margin-bottom: 1.5rem;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  margin-bottom: 1rem;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.carousel-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.carousel-button:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-button.prev {
+  left: 1rem;
+}
+
+.carousel-button.next {
+  right: 1rem;
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.indicator.active {
+  background-color: var(--white);
+}
+
+/* Project Outcome section */
+.project-outcome {
+  margin-bottom: 3rem;
+}
+
+.project-outcome h2 {
+  margin-bottom: 1.5rem;
+}
+
+.outcome-list {
+  list-style: none;
+  padding: 0;
+}
+
+.outcome-list li {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.outcome-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--pink);
+}
+
+/* Next Project Navigation */
+/* .next-project h2 {
+  margin-bottom: 1rem;
+}
+
+.next-project-name {
+  font-size: 1.2rem;
+} */
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .project-detail-container {
+    padding: 1rem;
+  }
+
+  .project-overview h1 {
+    font-size: 2rem;
+  }
+
+  .carousel {
+    height: 300px;
+  }
+
+  .project-links {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+} 

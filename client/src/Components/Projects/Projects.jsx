@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import api from '../../api';
 import './Projects.css';
 
@@ -45,16 +46,12 @@ const Projects = () => {
                 ))}
               </div>
               <div className="project-links">
-                {project.url && (
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-project"
-                  >
-                    View Project
-                  </a>
-                )}
+                <Link
+                  to={`/projects/${encodeURIComponent(project.name)}`}
+                  className="btn btn-project"
+                >
+                  View Project
+                </Link>
               </div>
             </div>
           </div>
