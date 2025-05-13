@@ -1,6 +1,6 @@
 .footer {
-  background-color: var(--blue);
-  color: var(--bgc);
+  background-color: var(--bg-secondary);
+  color: var(--bg-primary);
   padding: 1rem 0;
   position: fixed;
   left: 0;
@@ -19,13 +19,13 @@
 }
 
 .footer a {
-  color: var(--bgc);
+  color: var(--bg-primary);
   margin: 0 0.5rem;
   transition: color 0.3s;
 }
 
 .footer a:hover {
-  color: var(--white);
+  color: var(--text-primary);
 }
 
 .footer i {

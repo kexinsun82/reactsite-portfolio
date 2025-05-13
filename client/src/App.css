@@ -1,17 +1,45 @@
 :root {
   /* Colors */
-  --bgc: #232946;
+  /* --bgc: #232946;
   --pink: #eebbc3;
   --white: #fffffe;
-  --blue: #b8c1ec;
+  --blue: #b8c1ec; */
 
   /* Font family */
   /* --Heading1: "Playball", "Times New Roman", system-ui; */
   --Heading1: "Corinthia", "Times New Roman", system-ui;
   /* --Heading2: "Roboto Serif", "Times New Roman", Times, serif; */
   --Heading2: "Proza Libre", Arial, sans-serif;
+
+  /* Dark theme (default) */
+  --bg-primary: #131517;
+  --bg-secondary: #b8c1ec;
+  --text-primary: #fffffe;
+  --text-secondary: #232946;
+  --text-description: #232946;
+  --accent-color: #eebbc3;
+  --accent-hover: #b8c1ec;
+  --border-color: #eebbc3;
+  /* --bg-primary: #232946;
+  --bg-secondary: #b8c1ec;
+  --text-primary: #fffffe;
+  --text-secondary: #232946;
+  --accent-color: #eebbc3;
+  --accent-hover: #b8c1ec;
+  --border-color: #eebbc3; */
 }
 
+.light-theme {
+  --bg-primary: #fffffe;
+  --bg-secondary: #516d5a;
+  --text-primary: #333333;
+  --text-secondary: #fffffe;
+  --text-description: #fffffe;
+  --accent-color: #786752;
+  --accent-hover: #b8c1ec;
+  --border-color: #2a2626;
+}
+a1cce3
 * {
   margin: 0;
   padding: 0;
@@ -19,14 +47,41 @@
 }
 
 body {
-  color: var(--white);
-  background-color: var(--bgc);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
   font-family: var(--Heading2);
   min-height: 100vh;
-  /* position: relative; */
-  padding-bottom: 2rem; 
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.app {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a {
   text-decoration: none;
+  color: var(--text-primary);
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background-color: var(--bg-secondary);
 }

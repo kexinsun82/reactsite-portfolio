@@ -5,6 +5,7 @@ const dbUrl = `mongodb+srv://${process.env.DBUSER}:${process.env.DBPWD}@${proces
 const ProjectSchema = new mongoose.Schema({
   name: String,
   description: String,
+  shortDescription: String,
   tech: [String],
   year: Number,
   status: String,
@@ -14,6 +15,7 @@ const ProjectSchema = new mongoose.Schema({
   images: [String],
   figmaUrl: String,
   outcomes: [String],
+  team: [String],
   nextProject: {
     name: String,
     order: Number
@@ -34,6 +36,7 @@ async function initializeProjects() {
     let projectList = [
       {
         name: "Focus Typing",
+        shortDescription: "A typing speed test web app to help users improve typing skills.",
         description: "A typing speed test web app to help users improve typing skills.",
         tech: ["JavaScript", "React", "Node.js"],
         year: 2025,
@@ -43,6 +46,7 @@ async function initializeProjects() {
         images: ["https://i.postimg.cc/Vv5yZmTq/project2.png"],
         figmaUrl: "https://kexinsun82.github.io/javascript-focus-typing/",
         outcomes: ["JavaScript", "React", "Node.js"],
+        team: ["Kexin Sun"],
         nextProject: {
           name: "Portfolio Website",
           order: 2
@@ -50,6 +54,7 @@ async function initializeProjects() {
       },
       {
         name: "Portfolio Website",
+        shortDescription: "My personal portfolio showcasing my projects and skills.",
         description: "My personal portfolio showcasing my projects and skills.",
         tech: ["HTML", "CSS", "JavaScript", "Express"],
         year: 2025,
@@ -59,6 +64,7 @@ async function initializeProjects() {
         images: ["https://i.postimg.cc/hPkFMF0m/project6.png"],
         figmaUrl: "https://www.kellysun.ca/",
         outcomes: ["HTML", "CSS", "JavaScript", "Express"],
+        team: ["Kexin Sun"],
         nextProject: {
           name: "Focus Typing",
           order: 1
@@ -82,9 +88,9 @@ async function getProjectByName(name) {
   return project;
 }
 
-async function addProject(name, description, tech, year, status, url, imageUrl) {
+async function addProject(name, description, shortDescription, tech, year, status, url, imageUrl, outcomes, team) {
   await connect();
-  let newProject = new Project({ name, description, tech, year, status, url, imageUrl });
+  let newProject = new Project({ name, description, shortDescription, tech, year, status, url, imageUrl, outcomes, team });
   await newProject.save();
 }
 

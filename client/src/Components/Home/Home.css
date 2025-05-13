@@ -29,7 +29,7 @@
 
 .position {
   font-size: 2.5rem;
-  color: var(--pink);
+  color: var(--accent-color);
   margin: 0;
   position: relative;
 }
@@ -52,28 +52,32 @@
   margin: 0 auto 2rem;
   font-size: 1.2rem;
   line-height: 1.6;
-  color: var(--white);
+  color: var(--text-primary);
 }
 
 .btn-primary {
-  background-color: var(--pink);
-  border-color: var(--pink);
-  color: var(--bgc);
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--bg-primary);
 }
 .btn-primary:hover {
-  background-color: var(--blue);
-  border-color: var(--blue);
-  color: var(--bgc);
+  background-color: var(--bg-secondary);
+  border-color: var(--bg-secondary);
+  color: var(--text-secondary);
 }
 
 .btn-outline-primary {
-  border-color: var(--white);
-  color: var(--white);
+  border-color: var(--text-primary);
+  color: var(--text-primary);
 }
 .btn-outline-primary:hover {
-  background-color: var(--blue);
-  border-color: var(--blue);
-  color: var(--bgc);
+  background-color: var(--bg-secondary);
+  border-color: var(--bg-secondary);
+  color: var(--bg-primary);
+}
+
+.theme-toggle i .bi .bi-sun::before {
+  font-size: 4rem;
 }
 
 .profile-image {
@@ -83,12 +87,12 @@
   border-radius: 50%;
   object-fit: cover;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 0 40px var(--pink);
+  box-shadow: 0 0 40px var(--accent-color);
 }
 
 .profile-image:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 40px var(--white);
+  box-shadow: 0 0 40px var(--text-primary);
 }
 @media (max-width: 768px) {
   .position-container {

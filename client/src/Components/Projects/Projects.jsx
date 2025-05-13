@@ -37,7 +37,7 @@ const Projects = () => {
             </div>
             <div className="project-content">
               <h3>{project.name}</h3>
-              <p className="project-description">{project.description}</p>
+              <p className="project-description">{project.shortDescription}</p>
               <div className="project-tech">
                 {project.tech.map((tech, index) => (
                   <span key={index} className="tech-tag">

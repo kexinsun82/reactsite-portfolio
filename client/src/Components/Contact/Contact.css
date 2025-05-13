@@ -1,11 +1,14 @@
 .contact-container {
   margin: 2em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .contact-container h2 {
   text-align: center;
   margin-bottom: 2rem;
-  color: var(--white);
+  color: var(--text-primary);
 }
 
 .resume-container {
@@ -14,8 +17,8 @@
 
 .resume-download, .submit-btn {
   display: inline-block;
-  background-color: var(--pink);
-  color: var(--bgc);
+  background-color: var(--accent-color);
+  color: var(--bg-primary);
   padding: 0.75rem 1.5rem;
   border-radius: 4px;
   margin-bottom: 2rem;
@@ -23,13 +26,15 @@
 }
 
 .resume-download:hover, .submit-btn:hover {
-  background-color: var(--blue);
-  color: var(--bgc);
+  background-color: var(--bg-secondary);
+  color: var(--bg-primary);
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 50rem;
   gap: 1.5rem;
 }
 
@@ -40,7 +45,7 @@
 }
 
 .form-group label {
-  color: var(--white);
+  color: var(--text-primary);
   font-weight: 500;
 }
 
@@ -48,8 +53,8 @@
 .form-group textarea {
   padding: 0.5rem;
   border-radius: 4px;
-  background-color: var(--white);
-  color: var(--bgc);
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
   font-family: var(--MainText);
   border: none;
 }
@@ -64,18 +69,31 @@
   border-radius: 4px;
   text-align: center;
   font-weight: 500;
+  margin-top: 1rem;
 }
 
 .status-message.success {
-  background-color: rgb(133, 186, 133);
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #4caf50;
 }
 
 .status-message.error {
-  background-color: rgb(230, 55, 55);
+  background-color: rgba(244, 67, 54, 0.1);
+  color: #f44336;
 }
 
 @media (max-width: 768px) {
   .contact-container {
     padding: 1rem;
+  }
+  
+  .contact-form {
+    width: 90%;
+    padding: 1.5rem;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 0.5rem;
   }
 } 

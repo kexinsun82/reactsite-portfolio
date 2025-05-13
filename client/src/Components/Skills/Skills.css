@@ -18,7 +18,7 @@
 }
 
 .skill-category {
-  background: var(--white);
+  background: var(--text-primary);
   padding: 1.5rem;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -28,7 +28,7 @@
 }
 
 .skill-category h3 {
-  color: var(--bgc);
+  color: var(--bg-primary);
   margin-bottom: 1.5rem;
   font-size: 1.2rem;
 }
@@ -40,7 +40,7 @@
 }
 
 .skill-item {
-  background: var(--blue);
+  background: var(--bg-secondary);
   padding: 0.4rem;
   border-radius: 100px;
   padding-left: 1rem;
@@ -56,7 +56,7 @@
 .skill-name {
   font-weight: 500;
   font-size: 0.9rem;
-  color: var(--bgc);
+  color: var(--bg-primary);
 }
 
 .skill-level {
@@ -67,8 +67,8 @@
 }
 
 .level-beginner, .level-intermediate, .level-advanced {
-  background-color: var(--white);
-  color: var(--bgc);
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
 }
 
 .loading, .error {

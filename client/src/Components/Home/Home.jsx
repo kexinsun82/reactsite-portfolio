@@ -8,7 +8,7 @@ import Footer from '../Footer/Footer';
 import profileImage from '../../assets/profile.jpg';
 import './Home.css';
 
-const Home = () => {
+const Home = ({ isDarkMode, toggleTheme }) => {
   const [activeSection, setActiveSection] = useState('home');
   const [currentPosition, setCurrentPosition] = useState(0);
 
@@ -37,7 +37,12 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <Navigation activeSection={activeSection} onNavClick={scrollToSection} />
+      <Navigation 
+        activeSection={activeSection} 
+        onNavClick={scrollToSection}
+        isDarkMode={isDarkMode}
+        toggleTheme={toggleTheme}
+      />
       
       <section id="home" className="section">
         <div className="container">

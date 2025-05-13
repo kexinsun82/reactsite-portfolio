@@ -6,25 +6,31 @@ block content
 
     form(action="/addproject" method="POST").mb-4
       .row
-        .col-md-4
+        .col-md-12
           input.form-control(type="text" name="name" placeholder="Project Name" required)
-        .col-md-4
+        .col-md-12
           input.form-control(type="text" name="description" placeholder="Description" required)
-        .col-md-4
+        .col-md-12
+          input.form-control(type="text" name="shortDescription" placeholder="Short Description" required)
+        .col-md-12
           input.form-control(type="text" name="tech" placeholder="Tech Stack (comma separated)" required)
       .row.mt-2
-        .col-md-4
+        .col-md-12
           input.form-control(type="number" name="year" placeholder="Year" required)
-        .col-md-4
+        .col-md-12
           select.form-select(name="status" required)
             option(value="In Progress") In Progress
             option(value="Completed") Completed
             option(value="Maintained") Maintained
-        .col-md-4
+        .col-md-12
           input.form-control(type="text" name="url" placeholder="GitHub Repository URL")
       .row.mt-2
-        .col-md-4
+        .col-md-12
           input.form-control(type="text" name="imageUrl" placeholder="Image URL")
+        .col-md-12
+          input.form-control(type="text" name="outcomes" placeholder="Outcomes (comma separated)")
+        .col-md-12
+          input.form-control(type="text" name="team" placeholder="Team (comma separated)")
       .mt-3
         button.btn.btn-primary(type="submit") Add Project
 
@@ -37,10 +43,13 @@ block content
               img.card-img-top(src=project.imageUrl alt=project.name)
             .card-body
               h4.card-title= project.name
+              p.card-text= project.shortDescription
               p.card-text= project.description
               p Tech: #{project.tech.join(", ")}
               p Year: #{project.year}
               p Status: #{project.status}
+              p Team: #{project.team.join(", ")}
+              p Outcomes: #{project.outcomes.join(", ")}
               form(action="/updateprojectstatus" method="POST" class="mb-2")
                 input(type="hidden" name="name" value=project.name)
                 select.form-select(name="newStatus" onchange="this.form.submit()")

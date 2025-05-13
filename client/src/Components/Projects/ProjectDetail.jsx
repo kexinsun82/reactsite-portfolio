@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import api from '../../api';
+import Navigation from '../Navigation/Navigation';
 import './ProjectDetail.css';
+import Footer from '../Footer/Footer';
 
-const ProjectDetail = () => {
+const ProjectDetail = ({ isDarkMode, toggleTheme }) => {
   const { projectName } = useParams();
   const navigate = useNavigate();
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [activeSection, setActiveSection] = useState('overview');
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -29,6 +32,27 @@ const ProjectDetail = () => {
     fetchProject();
   }, [projectName]);
 
+  // Auto play images
+  useEffect(() => {
+    if (!project) return;
+    
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => 
+        prev === project.images.length - 1 ? 0 : prev + 1
+      );
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [project]);
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(sectionId);
+    }
+  };
+
   if (loading) return <div className="loading">Loading...</div>;
   if (error) return <div className="error">{error}</div>;
   if (!project) return <div className="error">Project not found</div>;
@@ -47,18 +71,16 @@ const ProjectDetail = () => {
 
   return (
     <div className="project-detail-container">
-      {/* <Navigation activeSection={activeSection} onNavClick={scrollToSection} /> */}
-
 
       {/* Back to Projects */}
       <nav className="project-nav">
         <button onClick={() => navigate(-1)} className="btn btn-primary">
-           Back to Projects
+          <i className="bi bi-arrow-left"></i> Back to Projects
         </button>
       </nav>
 
       {/* Overview */}
-      <section className="project-overview">
+      <section id="overview" className="project-overview">
         <h1>{project.name}</h1>
         <p className="project-description">{project.description}</p>
       </section>
@@ -78,18 +100,12 @@ const ProjectDetail = () => {
       </section>
 
       {/* Project Gallery */}
-      <section className="project-gallery">
+      <section id="gallery" className="project-gallery">
         <h2>Project Gallery</h2>
         <div className="carousel">
-          <button className="carousel-button prev" onClick={prevImage}>
-            <i className="bi bi-chevron-left"></i>
-          </button>
           <div className="carousel-image">
             <img src={project.images[currentImageIndex]} alt={`${project.name} - Image ${currentImageIndex + 1}`} />
           </div>
-          <button className="carousel-button next" onClick={nextImage}>
-            <i className="bi bi-chevron-right"></i>
-          </button>
         </div>
         <div className="carousel-indicators">
           {project.images.map((_, index) => (
@@ -102,14 +118,28 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Project Outcome */}
-      <section className="project-outcome">
-        <h2>Project Outcome</h2>
-        <ul className="outcome-list">
-          {project.outcomes.map((outcome, index) => (
-            <li key={index}>{outcome}</li>
-          ))}
-        </ul>
+      {/* Project Outcome and Team */}
+      <section id="outcome" className="project-details">
+        <div className="outcome-section">
+          <h2>Outcome</h2>
+          <ul className="outcome-list">
+            {project.outcomes.map((outcome, index) => (
+              <li key={index}>{outcome}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="team-section">
+          <h2>Team</h2>
+          <ul className="team-members">
+            {project.team.map((team, index) => (
+              <li key={index}>{team}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="year">
+            <h2>Year</h2>
+            <p>{project.year}</p>
+          </div>
       </section>
 
       {/* Next Project Navigation */}
@@ -117,10 +147,13 @@ const ProjectDetail = () => {
         <h2>Next Project</h2>
         <Link to={`/projects/${project.nextProject?.name || ''}`} className="btn btn-primary">
           <span className="next-project-name">{project.nextProject?.name || ''}</span>
-          <i className="bi bi-arrow-right"></i>
         </Link>
       </section>
+
+      <Footer />
     </div>
+
+    
   );
 };
 
