@@ -49,8 +49,8 @@
   font-size: 1.2rem;
 }
 
-.project-description {
-  color: var(--text-description) !important;
+.short-description {
+  color: var(--text-secondary) !important;
   margin-bottom: 1rem;
   line-height: 1.6;
 }
