@@ -105,16 +105,16 @@ const ProjectDetail = ({ isDarkMode, toggleTheme }) => {
         <div className="carousel">
           <div className="carousel-image">
             <img src={project.images[currentImageIndex]} alt={`${project.name} - Image ${currentImageIndex + 1}`} />
+            <div className="carousel-indicators">
+              {project.images.map((_, index) => (
+                <span
+                  key={index}
+                  className={`indicator ${index === currentImageIndex ? 'active' : ''}`}
+                  onClick={() => setCurrentImageIndex(index)}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="carousel-indicators">
-          {project.images.map((_, index) => (
-            <span
-              key={index}
-              className={`indicator ${index === currentImageIndex ? 'active' : ''}`}
-              onClick={() => setCurrentImageIndex(index)}
-            />
-          ))}
         </div>
       </section>
 

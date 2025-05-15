@@ -105,4 +105,8 @@
   .projects-grid {
     grid-template-columns: 1fr;
   }
+
+  .btn-primary {
+    margin-bottom: 0.8em;
+  }
 } 
