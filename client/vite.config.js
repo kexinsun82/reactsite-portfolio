@@ -7,7 +7,7 @@ export default defineConfig({
     port: 5174,
     proxy: {
       '/api': {
-        target: 'http://localhost:3306',
+        target: 'https://react-portfolioadmin-production.up.railway.app/',
         changeOrigin: true,
       }
     }

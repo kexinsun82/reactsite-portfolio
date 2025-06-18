@@ -1,16 +1,9 @@
 :root {
-  /* Colors */
-  /* --bgc: #232946;
-  --pink: #eebbc3;
-  --white: #fffffe;
-  --blue: #b8c1ec; */
-
   /* Font family */
-  /* --Heading1: "Playball", "Times New Roman", system-ui; */
   --Heading1: "Corinthia", "Times New Roman", system-ui;
-  /* --Heading2: "Roboto Serif", "Times New Roman", Times, serif; */
   --Heading2: "Proza Libre", Arial, sans-serif;
 
+  /* Colors */
   /* Dark theme (default) */
   --bg-primary: #131517;
   --bg-secondary: #b8c1ec;
@@ -20,13 +13,6 @@
   --accent-color: #eebbc3;
   --accent-hover: #b8c1ec;
   --border-color: #eebbc3;
-  /* --bg-primary: #232946;
-  --bg-secondary: #b8c1ec;
-  --text-primary: #fffffe;
-  --text-secondary: #232946;
-  --accent-color: #eebbc3;
-  --accent-hover: #b8c1ec;
-  --border-color: #eebbc3; */
 }
 
 .light-theme {
@@ -39,7 +25,7 @@
   --accent-hover: #b8c1ec;
   --border-color: #2a2626;
 }
-a1cce3
+
 * {
   margin: 0;
   padding: 0;

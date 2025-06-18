@@ -1,33 +1,28 @@
 import axios from "axios";
 
-const API_BASE = 'http://localhost:3306/api';
+// const API_BASE = 'http://localhost:3306/api';
+const API_BASE = 'https://expressjs-g7y5.onrender.com/api';
+// const API_BASE = 'https://react-portfolioadmin-production.up.railway.app/api';
 
-// 创建axios实例
 const axiosInstance = axios.create({
   baseURL: API_BASE,
   timeout: 10000,
 });
 
-// 添加请求拦截器
 axiosInstance.interceptors.request.use(
   (config) => {
-    console.log('API Request:', config.url); // 添加请求日志
     return config;
   },
   (error) => {
-    console.error('API Request Error:', error);
     return Promise.reject(error);
   }
 );
 
-// 添加响应拦截器
 axiosInstance.interceptors.response.use(
   (response) => {
-    console.log('API Response:', response.status); // 添加响应日志
     return response;
   },
   (error) => {
-    console.error('API Response Error:', error.response || error);
     return Promise.reject(error);
   }
 );
