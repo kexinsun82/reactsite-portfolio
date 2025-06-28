@@ -1,8 +1,8 @@
 import axios from "axios";
 
 // const API_BASE = 'http://localhost:3306/api';
-const API_BASE = 'https://expressjs-g7y5.onrender.com/api';
-// const API_BASE = 'https://react-portfolioadmin-production.up.railway.app/api';
+// const API_BASE = 'https://react-portfolio-admin.onrender.com/api';
+const API_BASE = 'https://react-portfolioadmin-production.up.railway.app/api';
 
 const axiosInstance = axios.create({
   baseURL: API_BASE,

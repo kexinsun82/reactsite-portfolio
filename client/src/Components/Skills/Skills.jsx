@@ -30,7 +30,6 @@ const Skills = () => {
     return acc;
   }, {});
 
-  // 获取技能等级对应的样式类
   const getLevelClass = (level) => {
     switch (level.toLowerCase()) {
       case 'advanced':
