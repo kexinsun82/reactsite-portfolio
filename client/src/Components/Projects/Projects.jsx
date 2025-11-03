@@ -1,31 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import api from '../../api';
+import { projects } from '../../data/projects';
 import './Projects.css';
 
 const Projects = () => {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await api.projects.getAll();
-        setProjects(response.data);
-        setLoading(false);
-      } catch (err) {
-        setError('Unable to load project data');
-        setLoading(false);
-      }
-    };
-
-    fetchProjects();
-  }, []);
-
-  if (loading) return <div className="loading">Loading...</div>;
-  if (error) return <div className="error">{error}</div>;
-
   return (
     <div className="projects-container">
       <h2 id="projects">My Projects</h2>
@@ -37,7 +15,7 @@ const Projects = () => {
             </div>
             <div className="project-content">
               <h3>{project.name}</h3>
-              <p className="short-description">{project.shortDescription}</p>
+              <p className="short-description">{project.shortDescription || project.description}</p>
               <div className="project-tech">
                 {project.tech.map((tech, index) => (
                   <span key={index} className="tech-tag">
@@ -47,7 +25,7 @@ const Projects = () => {
               </div>
               <div className="project-links">
                 <Link
-                  to={`/projects/${encodeURIComponent(project.name)}`}
+                  to={`/projects/${project.slug}`}
                   className="btn btn-project"
                 >
                   View Project

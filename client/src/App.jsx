@@ -24,7 +24,7 @@ function App() {
       <div className={`app ${isDarkMode ? 'dark-theme' : 'light-theme'}`}>
         <Routes>
           <Route path="/" element={<Home isDarkMode={isDarkMode} toggleTheme={toggleTheme} />} />
-          <Route path="/projects/:projectName" element={<ProjectDetail isDarkMode={isDarkMode} toggleTheme={toggleTheme} />} />
+          <Route path="/projects/:slug" element={<ProjectDetail isDarkMode={isDarkMode} toggleTheme={toggleTheme} />} />
         </Routes>
       </div>
     </Router>

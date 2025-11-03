@@ -1,47 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import api from '../../api';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { projects, getProjectBySlug, getProjectByName } from '../../data/projects';
 import Navigation from '../Navigation/Navigation';
 import './ProjectDetail.css';
-import Footer from '../Footer/Footer';
 
 const ProjectDetail = ({ isDarkMode, toggleTheme }) => {
-  const { projectName } = useParams();
+  const params = useParams();
   const navigate = useNavigate();
+  const { projectName, slug } = params;
   const [project, setProject] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [activeSection, setActiveSection] = useState('overview');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    const fetchProject = async () => {
-      try {
-        console.log('Fetching project:', projectName);
-        const response = await api.projects.getOne(projectName);
-        console.log('API Response:', response);
-        setProject(response.data);
-        setLoading(false);
-      } catch (err) {
-        console.error('Error details:', err);
-        setError(`Unable to load project details: ${err.message}`);
-        setLoading(false);
-      }
-    };
+    let found = null;
+    if (slug) {
+      found = getProjectBySlug(slug);
+    }
+    if (!found && projectName) {
+      const decoded = decodeURIComponent(projectName);
+      found = getProjectBySlug(decoded) || getProjectByName(decoded);
+    }
+    setProject(found || null);
+    setCurrentImageIndex(0);
+  }, [slug, projectName]);
 
-    fetchProject();
-  }, [projectName]);
-
-  // Auto play images
   useEffect(() => {
-    if (!project) return;
-    
+    if (!project || !project.images || project.images.length <= 1) return;
     const timer = setInterval(() => {
-      setCurrentImageIndex((prev) => 
-        prev === project.images.length - 1 ? 0 : prev + 1
-      );
-    }, 5000);
-
+      setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+    }, 4000);
     return () => clearInterval(timer);
   }, [project]);
 
@@ -53,31 +41,34 @@ const ProjectDetail = ({ isDarkMode, toggleTheme }) => {
     }
   };
 
-  if (loading) return <div className="loading">Loading...</div>;
-  if (error) return <div className="error">{error}</div>;
-  if (!project) return <div className="error">Project not found</div>;
-
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => 
-      prev === project.images.length - 1 ? 0 : prev + 1
-    );
+  const showPrev = () => {
+    if (!project || !project.images) return;
+    setCurrentImageIndex((prev) => (prev === 0 ? project.images.length - 1 : prev - 1));
   };
 
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => 
-      prev === 0 ? project.images.length - 1 : prev - 1
-    );
+  const showNext = () => {
+    if (!project || !project.images) return;
+    setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
   };
+
+  if (!project) {
+    return <div className="error">Project not found</div>;
+  }
 
   return (
     <div className="project-detail-container">
+      <Navigation 
+        activeSection={activeSection} 
+        onNavClick={scrollToSection}
+        isDarkMode={isDarkMode}
+        toggleTheme={toggleTheme}
+      />
 
-      {/* Back to Projects */}
-      <nav className="project-nav">
-        <button onClick={() => navigate(-1)} className="btn btn-primary">
-          <i className="bi bi-arrow-left"></i> Back to Projects
+      <div className="back-row">
+        <button className="btn btn-outline-primary" onClick={() => navigate(-1)}>
+          Back to Home
         </button>
-      </nav>
+      </div>
 
       {/* Overview */}
       <section id="overview" className="project-overview">
@@ -99,31 +90,26 @@ const ProjectDetail = ({ isDarkMode, toggleTheme }) => {
         )}
       </section>
 
-      {/* Project Gallery */}
+      {/* Image carousel */}
       <section id="gallery" className="project-gallery">
         <h2>Project Gallery</h2>
-        <div className="carousel">
-          <div className="carousel-image">
-            <img src={project.images[currentImageIndex]} alt={`${project.name} - Image ${currentImageIndex + 1}`} />
-            <div className="carousel-indicators">
-              {project.images.map((_, index) => (
-                <span
-                  key={index}
-                  className={`indicator ${index === currentImageIndex ? 'active' : ''}`}
-                  onClick={() => setCurrentImageIndex(index)}
-                />
-              ))}
+        {project.images && project.images.length > 0 && (
+          <div className="carousel">
+            <button className="carousel-button prev btn btn-primary" onClick={showPrev} aria-label="Previous image">‹</button>
+            <div className="carousel-image">
+              <img src={project.images[currentImageIndex]} alt={`${project.name} - ${currentImageIndex + 1}`} />
             </div>
+            <button className="carousel-button next btn btn-primary" onClick={showNext} aria-label="Next image">›</button>
           </div>
-        </div>
+        )}
       </section>
 
-      {/* Project Outcome and Team */}
+      {/* Outcome and Team */}
       <section id="outcome" className="project-details">
         <div className="outcome-section">
           <h2>Outcome</h2>
           <ul className="outcome-list">
-            {project.outcomes.map((outcome, index) => (
+            {(project.outcomes || []).map((outcome, index) => (
               <li key={index}>{outcome}</li>
             ))}
           </ul>
@@ -131,29 +117,32 @@ const ProjectDetail = ({ isDarkMode, toggleTheme }) => {
         <div className="team-section">
           <h2>Team</h2>
           <ul className="team-members">
-            {project.team.map((team, index) => (
-              <li key={index}>{team}</li>
+            {(project.team || []).map((member, index) => (
+              <li key={index}>{member}</li>
             ))}
           </ul>
         </div>
         <div className="year">
-            <h2>Year</h2>
-            <p>{project.year}</p>
-          </div>
+          <h2>Year</h2>
+          <p>{project.year}</p>
+        </div>
       </section>
 
-      {/* Next Project Navigation */}
+      {/* Next Project */}
       <section className="next-project">
         <h2>Next Project</h2>
-        <Link to={`/projects/${project.nextProject?.name || ''}`} className="btn btn-primary">
-          <span className="next-project-name">{project.nextProject?.name || ''}</span>
-        </Link>
+        {project.nextProject?.name && (
+          (() => {
+            const next = projects.find(p => p.name === project.nextProject.name);
+            return next ? (
+              <Link to={`/projects/${next.slug}`} className="btn btn-primary">
+                <span className="next-project-name">{next.name}</span>
+              </Link>
+            ) : null;
+          })()
+        )}
       </section>
-
-      <Footer />
     </div>
-
-    
   );
 };
 
