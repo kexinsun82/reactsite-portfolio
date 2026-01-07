@@ -64,16 +64,7 @@
   border-radius: 20px;
   font-size: 0.85rem;
   font-weight: 500;
-}
-
-.level-beginner, .level-intermediate, .level-advanced {
   background-color: var(--text-primary);
   color: var(--bg-primary);
-}
-
-.loading, .error {
-  text-align: center;
-  padding: 2rem;
-  color: var(--text-color);
 }
 
