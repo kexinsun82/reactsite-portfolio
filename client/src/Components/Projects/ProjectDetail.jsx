@@ -57,12 +57,6 @@ const ProjectDetail = ({ isDarkMode, toggleTheme }) => {
 
   return (
     <div className="project-detail-container">
-      <Navigation 
-        activeSection={activeSection} 
-        onNavClick={scrollToSection}
-        isDarkMode={isDarkMode}
-        toggleTheme={toggleTheme}
-      />
 
       <div className="back-row">
         <button className="btn btn-outline-primary" onClick={() => navigate(-1)}>

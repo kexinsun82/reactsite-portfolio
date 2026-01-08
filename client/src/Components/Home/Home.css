@@ -65,6 +65,9 @@
   border-color: var(--bg-secondary);
   color: var(--text-secondary);
 }
+.btn-primary:active, .btn-primary:focus {
+  background-color: var(--accent-color);
+}
 
 .btn-outline-primary {
   border-color: var(--text-primary);

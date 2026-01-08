@@ -38,24 +38,13 @@
 }
 
 .nav-item {
-  padding: 0.5rem 0.8rem;
-  border: none;
-  background: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  border-radius: 4px;
-  font-size: 1rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.nav-item:hover {
-  background-color: var(--bg-secondary);
-  color: var(--text-secondary) !important;
 }
 
 .nav-link {
-  margin: 0 1rem;
+  margin: 0.5rem 1.2rem;
   transition: all 0.3s ease;
   cursor: pointer;
   font-weight: 500;
@@ -68,6 +57,15 @@
 }
 .nav-link:hover {
   color: var(--text-secondary) !important;
+  background-color: var(--bg-secondary) !important;
+  border-radius: 4px;
+  padding: 0.5rem 1.5rem;
+}
+.navbar-nav .nav-link.active {
+  color: var(--text-secondary) !important;
+  background-color: var(--bg-secondary) !important;
+  border-radius: 4px;
+  padding: 0.5rem 1.5rem;
 }
 
 /* Hamburger Nav Menu */
