@@ -59,7 +59,7 @@ const ProjectDetail = ({ isDarkMode, toggleTheme }) => {
     <div className="project-detail-container">
 
       <div className="back-row">
-        <Link className='btn btn-primary me-2' onClick={() => navigate('/')}>Home</Link>
+        <Link className='btn btn-primary me-2' to={"/"}>Home</Link>
         <Link className="btn btn-outline-primary" onClick={() => navigate(-1)}>
           Back
         </Link>
@@ -71,19 +71,23 @@ const ProjectDetail = ({ isDarkMode, toggleTheme }) => {
         <p className="project-description">{project.description}</p>
       </section>
 
-      <section id='challenge' className='project-challenge'>
-        <h2>Challenge</h2>
-        {project.challenge}
-      </section>
+      {project.challenge && (
+        <section id='challenge' className='project-challenge'>
+          <h2>Challenge</h2>
+          <p>{project.challenge}</p>
+        </section>
+      )}
 
-      <section id='solution' className='project-solution'>
+      {project.solution && project.solution.length > 0 && (
+        <section id='solution' className='project-solution'>
         <h2>Solution</h2>
-        <ul className='solution-list'>
-          {project.solution.map((solution, index) => (
-            <li key={index}>{solution}</li>
-          ))}
-        </ul>
-      </section>
+          <ul className='solution-list'>
+            {project.solution.map((solution, index) => (
+              <li key={index}>{solution}</li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {/* Links */}
       <section className="project-links">
