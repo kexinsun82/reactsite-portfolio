@@ -8,6 +8,17 @@
   transition: all 0.3s ease;
 }
 
+.back-row {
+  margin: 1rem 0 2rem 0;
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.back-row .btn {
+  padding: 0.5rem 1rem;
+}
+
 /* Overview section */
 .project-overview {
   margin-bottom: 3rem;
@@ -20,6 +31,19 @@
 }
 
 .project-description {
+  color: var(--text-description);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.project-challenge {
+  color: var(--text-description);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.project-solution {
   color: var(--text-description);
   font-size: 1.1rem;
   line-height: 1.6;
@@ -179,7 +203,7 @@
     flex-direction: column;
   }
 
-  .btn {
+  .btn, .back-row {
     width: 100%;
     justify-content: center;
   }
@@ -196,14 +220,9 @@
     flex: 1;
     text-align: center;
   }
+
+  .back-row .btn .btn-primary {
+    margin-bottom: 0;
+  }
 }
 
-.back-row {
-  margin: 1rem 0 2rem 0;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.back-row .btn {
-  padding: 0.5rem 1rem;
-}

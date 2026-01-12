@@ -59,9 +59,10 @@ const ProjectDetail = ({ isDarkMode, toggleTheme }) => {
     <div className="project-detail-container">
 
       <div className="back-row">
-        <button className="btn btn-outline-primary" onClick={() => navigate(-1)}>
-          Back to Home
-        </button>
+        <Link className='btn btn-primary me-2' onClick={() => navigate('/')}>Home</Link>
+        <Link className="btn btn-outline-primary" onClick={() => navigate(-1)}>
+          Back
+        </Link>
       </div>
 
       {/* Overview */}
@@ -70,16 +71,30 @@ const ProjectDetail = ({ isDarkMode, toggleTheme }) => {
         <p className="project-description">{project.description}</p>
       </section>
 
+      <section id='challenge' className='project-challenge'>
+        <h2>Challenge</h2>
+        {project.challenge}
+      </section>
+
+      <section id='solution' className='project-solution'>
+        <h2>Solution</h2>
+        <ul className='solution-list'>
+          {project.solution.map((solution, index) => (
+            <li key={index}>{solution}</li>
+          ))}
+        </ul>
+      </section>
+
       {/* Links */}
       <section className="project-links">
         {project.figmaUrl && (
           <a href={project.figmaUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-            <i className="bi bi-figma"></i> View Figma
+            View Figma
           </a>
         )}
         {project.url && (
           <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-outline-primary">
-            <i className="bi bi-globe"></i> Visit Website
+            Visit Website
           </a>
         )}
       </section>
