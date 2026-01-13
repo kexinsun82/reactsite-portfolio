@@ -23,6 +23,8 @@ const ProjectDetail = ({ isDarkMode, toggleTheme }) => {
     }
     setProject(found || null);
     setCurrentImageIndex(0);
+
+    window.scrollTo({ top: 0, behavior: 'smooth'});
   }, [slug, projectName]);
 
   useEffect(() => {
