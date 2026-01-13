@@ -109,11 +109,11 @@
 }
 
 .carousel-button.prev {
-  left: 1rem;
+  left: 0rem;
 }
 
 .carousel-button.next {
-  right: 1rem;
+  right: 0rem;
 }
 
 /* Project Details section */
@@ -172,7 +172,7 @@
   }
 
   .project-overview h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .carousel {
@@ -185,18 +185,7 @@
   }
 
   .carousel-button {
-    padding: 0.75rem 1rem;
-    font-size: 1.5rem;
-    min-width: 40px;
-    min-height: 40px;
-  }
-
-  .carousel-button.prev {
-    left: 0.5rem;
-  }
-
-  .carousel-button.next {
-    right: 0.5rem;
+    display: none;
   }
 
   .project-links {
@@ -221,8 +210,8 @@
     text-align: center;
   }
 
-  .back-row .btn .btn-primary {
-    margin-bottom: 0;
+  .btn-outline-primary {
+    margin-bottom: 0.8em;
   }
 }
 

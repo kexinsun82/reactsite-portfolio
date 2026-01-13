@@ -59,7 +59,7 @@ const ProjectDetail = ({ isDarkMode, toggleTheme }) => {
     <div className="project-detail-container">
 
       <div className="back-row">
-        <Link className='btn btn-primary me-2' to={"/"}>Home</Link>
+        <Link className='btn btn-primary' to={"/"}>Home</Link>
         <Link className="btn btn-outline-primary" onClick={() => navigate(-1)}>
           Back
         </Link>
