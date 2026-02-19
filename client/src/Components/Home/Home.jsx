@@ -83,6 +83,16 @@ const Home = ({ isDarkMode, toggleTheme }) => {
                   Contact Me
                 </Link>
               </div>
+              <div className="mt-4">
+                <a
+                  href="https://kellysun.webflow.io/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="design-portfolio-link"
+                >
+                  Explore my UX/UI Design Portfolio →
+                </a>
+              </div>
             </div>
             <div className="col-md-3">
               <img 

@@ -83,6 +83,18 @@
   font-size: 4rem;
 }
 
+.design-portfolio-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.design-portfolio-link:hover {
+  color: var(--bg-secondary);
+  text-decoration: underline;
+}
+
 .profile-image {
   margin-left: 10em;
   width: 240px;
