@@ -89,7 +89,7 @@ const Home = ({ isDarkMode, toggleTheme }) => {
                   rel="noopener noreferrer"
                   className="design-portfolio-link"
                 >
-                  Explore my UX/UI Design Portfolio →
+                  Explore my additional visual work →
                 </a>
               </div>
             </div>
